@@ -1,0 +1,20 @@
+{
+  "name": "jlnsr-ait-final-project",
+  "version": "1.0.0",
+  "description": "For my final project, I will build a functional web application that acts as an interface between a fictional food establishment and its customers, handling orders, offering exclusive deals, and reporting analytics. I endeavor to deliver an application that presents an elegant and optimal UI that allows both customers to place orders online with ease, and business owners to understand what their customers enjoy the most about their business!",
+  "homepage": "https://github.com/jlnsr/jlnsr-AIT-final-project#readme",
+  "bugs": {
+    "url": "https://github.com/jlnsr/jlnsr-AIT-final-project/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlnsr/jlnsr-AIT-final-project.git"
+  },
+  "license": "ISC",
+  "author": "Julien L.N. Soto-Raspa",
+  "type": "ESModule",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
