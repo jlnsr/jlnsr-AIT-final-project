@@ -54,9 +54,9 @@ Customers desiring membership fill out a simple form that gets sent to the back-
 The schema contains basic authentication data, as well as more personal data to offer personalized deals to the customer. For instance, on the UI, the app would greet the customer by the name of 'Mandela Elmazi' and offer a Kanji, since that's one of his most ordered dishes.
 
 # Site Map
-![site map](public/images/sitemap.png)
+![site map](/Users/julien/NYU_DOCUMENTS/AIT/jlnsr-AIT-final-project/public/images/sitemap.png)
 # Wire Frame
-![wire frame](public/images/wireframe.png)
+![wire frame](/Users/julien/NYU_DOCUMENTS/AIT/jlnsr-AIT-final-project/public/images/wireframe.png)
 
 # User Stories
 1. As a user, I would like to be able to select items from the menu.
@@ -75,3 +75,22 @@ The schema contains basic authentication data, as well as more personal data to 
     - [An Example: Oh My Gyro online order portal](https://omgyrohalal.square.site/#AKZAN5IFVRTATHK77V7IISV5) 
 - (4 points) React.js
     - use React.js as the frontend framework; I have some experience with react so the overall interface shouldn't be that difficult to implement.
+
+# App Workload
+|Step|Customer|Server |Staff|
+|--|--|--|--|
+|1.|submits order -->| | | |
+|2.| |processes order -->| |
+|3.| | |prepares order|
+|4.| | |<-- sends updates|
+|5.| |<-- processes updates| |
+|6.|receives updates| | |
+|7.| | |<-- sends notification when done|
+|8.| |<-- passes notification
+|9.|customer recieves "Order Ready" notification| | |
+
+# Testing Framework
+Mocha
+
+# Route Testing
+Selenium
