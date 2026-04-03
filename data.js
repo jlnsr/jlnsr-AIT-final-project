@@ -1,4 +1,7 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
+mongoose.connect(process.env.DSN).
+  then(() => console.log('connected to database')).
+  catch(err => console.log('database connection error: ' + err));
 
 // DB details
 // Schema for restaurant items??
