@@ -1,0 +1,46 @@
+<!-- some hard-coded values for now -->
+<h1>You have 2 items in the shopping cart</h1>
+<ul>
+    <!-- this 'ul' should be populated programtically
+    Pull all 'cart items' from a list of selected items in the interactive menu.
+    -->
+    <li class="cart-item">
+        <h2>Item 1</h2>
+        <p>Description:</p>
+        <!-- remove item? -->
+    </li>
+    <li class="cart-item">
+        <h2>Item 2</h2>
+        <p>Description:</p>
+        <!-- remove item? -->
+    </li>
+</ul>
+<section>
+    <h2 id="order-status">{{ orderStatus }}</h2>
+    <!-- 
+    send order data to handler, on server, 
+    that deals with incoming customer orders
+    -->
+    {{#if processing}}
+    <form id="order-form" action="/cart" method="POST">
+        <!-- special notes for order -->
+        <label for="notes"></label>
+        Notes:
+        <input type="text" name="notes">
+        <!-- method of payment -->
+        <label for="payBy"></label>
+        *Pay By:
+        <select name="paymentMethod">
+            <option value="card">Card</option>
+            <option value="paypal">PayPal</option>
+        </select>
+        <!-- payment credentials/details -->
+        <p class="warning hidden" id="payment-warning">Must submit payment details</p>
+        <label for="payment"></label>
+        *Enter payment details:
+        <input id="payment-details" type="number" name="payment">
+        <!-- submission -->
+        <input id="submit-order" type="submit" value="Submit Order">
+    </form>
+    {{/if}}
+</section>

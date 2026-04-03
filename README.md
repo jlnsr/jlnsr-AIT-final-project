@@ -75,18 +75,17 @@ The schema contains basic authentication data, as well as more personal data to 
     - [An Example: Oh My Gyro online order portal](https://omgyrohalal.square.site/#AKZAN5IFVRTATHK77V7IISV5) 
 - (4 points) React.js
     - use React.js as the frontend framework; I have some experience with react so the overall interface shouldn't be that difficult to implement.
-
 # App Workload
 |Step|Customer|Server |Staff|
 |--|--|--|--|
-|1.|submits order -->| | | |
-|2.| |processes order -->| |
+|1.|submits order →| | | |
+|2.| |processes order →| |
 |3.| | |prepares order|
-|4.| | |<-- sends updates|
-|5.| |<-- processes updates| |
+|4.| | |← sends updates|
+|5.| |← processes updates| |
 |6.|receives updates| | |
-|7.| | |<-- sends notification when done|
-|8.| |<-- passes notification
+|7.| | |← sends notification when done|
+|8.| |← passes notification
 |9.|customer recieves "Order Ready" notification| | |
 
 # Testing Framework

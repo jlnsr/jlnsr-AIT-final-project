@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="">
+        <link rel="stylesheet" href="/styles/styles.css">
+    </head>
+    <body>
+        <!-- BEGINNING OF: make this a template -->
+        <header>
+            <img alt="business-logo">
+            <h1>Resturant Name</h1>
+            <div id="membership-signup">
+                <img alt="member-logo">
+                <a href="">Become a Member</a>    
+            </div>
+            <div id="nav-loc">
+                {{#if atHome}}
+                    <!-- Number of items in shopping cart -->
+                    <span id="number">0</span>'
+                    <!-- go to cart from home-->
+                    <img alt="shopping-cart-logo">
+                    <a href="/cart">Shopping Cart</a>
+                {{else}}
+                    <img alt="home-logo">
+                    <a href="/home">Home</a>
+                {{/if}}
+            </div>
+            
+        </header>
+        <!-- END OF: make this a template -->
+        <main>
+            <!-- dynamic content -->
+            {{{ body }}}
+        </main>
+        <script src="/dom/dom.js"></script>
+    </body>
+</html>

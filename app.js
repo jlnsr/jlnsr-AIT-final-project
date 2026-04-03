@@ -6,6 +6,8 @@ const app = express();
 // environment variable?
 const PORT = process.env.PORT || 3000;
 
+app.set('view engine', 'hbs');
+
 // get path to 'public' directory
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -17,7 +19,29 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 
 // basic routes
-app.use('/home', (req,res) => {});
+app.use('/home', (req,res, next) => {
+  next();
+});
+
+app.get('/home', (req, res) => {
+  res.render('home', {atHome: true});
+});
+
+app.get('/cart', (req, res) => {
+  res.render('cart', {
+    atHome: false, 
+    orderStatus: "Complete your order",
+    processing: true,
+  });
+});
+
+app.post('/cart', (req, res) => {
+  console.log(req.body);
+  res.render('cart', {
+    atHome: false, 
+    orderStatus: "Your order is on its way!",
+  });
+});
 
 // Start server
 app.listen(PORT, () => {

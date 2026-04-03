@@ -12,9 +12,13 @@
   },
   "license": "ISC",
   "author": "Julien L.N. Soto-Raspa",
-  "type": "ESModule",
+  "type": "module",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "hbs": "^4.2.1"
   }
 }

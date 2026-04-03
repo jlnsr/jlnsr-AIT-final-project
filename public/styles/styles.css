@@ -1,0 +1,84 @@
+h1 {
+    text-align: center;
+}
+header {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr 1fr;
+    border: 2px solid;
+    h1 {
+        background-color: lightgrey;
+        height: 100%;
+        align-self: center;
+    }
+}
+#membership-signup, #shopping-cart {
+    /* div's */
+    display: flex;
+    flex-direction: column;
+}
+#number {
+    /* number of items in shopping cart */
+    position: relative;
+    top: 10px; left: 10px;
+    padding: 5px;
+    background-color: lightseagreen; color: white;
+    width: fit-content;/* <-- relative or fixed */
+}
+main {
+    padding: 10px;
+    background-color: aliceblue;
+}
+ul {
+    border: 2px solid;
+    /* remove iterator */
+    list-style: none;
+    /* un-indent */
+    padding: 0;
+}
+.menu-item {
+    box-sizing: border-box;
+    padding: 10px;
+    width: 60%;
+    background-color: lightgrey;
+    /* appears when item added to cart */
+    span {
+        background-color: lightseagreen; color: white;
+        padding: 2px;
+        border-radius: 5px;
+    }
+}
+.menu-item:nth-of-type(even) {
+    text-align: right;
+    margin-left: 40%;
+}
+/* selected menu items */
+.selected-menu-item {
+    border-top: 2px solid lightseagreen;
+    border-bottom: 2px solid lightseagreen;
+}
+.selected-menu-item:nth-of-type(odd) {
+    border-right: 2px solid lightseagreen;
+}
+.selected-menu-item:nth-of-type(even) {
+    border-left: 2px solid lightseagreen; 
+}
+
+.hidden {
+    display: none;
+}
+
+form {
+    border: 2px solid;
+    margin: 0 auto;
+    padding: 10px;
+    width: 50%; height: 25vh;
+    display: flex;
+    flex-direction: column;
+} 
+input[type="submit"] {
+    background-color: lightseagreen; color: white;
+    width: 50%; margin: 10px auto;
+}
+.warning {
+    background-color: lightcoral; color: white;
+}
