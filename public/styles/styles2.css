@@ -1,0 +1,18 @@
+.menu, .cart {
+    border: 2px solid;
+    padding-left: 0;
+}
+.menu-item{
+    display: block;
+    height: 2em;
+    font-size: large;
+}
+.menu-item:hover{
+    background-color: lightskyblue;
+}
+.menu-item-clicked{
+    background-color: lightsteelblue;
+}
+.link {
+    font-size: xx-large;/* for now */
+}

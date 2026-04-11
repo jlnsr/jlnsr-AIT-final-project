@@ -18,32 +18,39 @@ const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // body-parser middleware
-app.use(express.urlencoded({ extended: true }));
+//app.use(express.urlencoded({ extended: true }));
+app.use(express.json())
 
 // basic routes
-app.use('/home', (req,res, next) => {
+app.use('/menu', (req,res, next) => {
   next();
 });
 
-app.get('/home', (req, res) => {
-  res.render('home', {atHome: true});
+app.get('/menu', (req, res) => {
+  res.render('menu', {otherPage: "cart"});
+  // Working: YES
 });
 
+// BEGINNING OF OVERHAUL
+/*app.get('/cart', (req, res) => {
+  
+});*/
+
+let cartItems = [];//<-- for now
+app.post('/cart', (req, res) => {
+  //console.log(req.body, Array.isArray(req.body));
+  cartItems = req.body;
+  res.sendStatus(200);
+  // Working: 
+});
 app.get('/cart', (req, res) => {
   res.render('cart', {
-    atHome: false, 
-    orderStatus: "Complete your order",
-    processing: true,
-  });
-});
-
-app.post('/cart', (req, res) => {
-  console.log(req.body);
-  res.render('cart', {
-    atHome: false, 
-    orderStatus: "Your order is on its way!",
-  });
-});
+    cartItems,
+    "otherPage": "menu",
+    "orderStatus": "Complete your order"
+  })
+})
+// END OF OVERHAUL
 
 // Start server
 app.listen(PORT, () => {

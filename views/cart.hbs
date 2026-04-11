@@ -1,28 +1,24 @@
-<!-- some hard-coded values for now -->
-<h1>You have 2 items in the shopping cart</h1>
-<ul>
-    <!-- this 'ul' should be populated programtically
-    Pull all 'cart items' from a list of selected items in the interactive menu.
-    -->
-    <li class="cart-item">
-        <h2>Item 1</h2>
-        <p>Description:</p>
-        <!-- remove item? -->
-    </li>
-    <li class="cart-item">
-        <h2>Item 2</h2>
-        <p>Description:</p>
-        <!-- remove item? -->
-    </li>
+<!--
+Template Variables:
+- cartItems
+- orderStatus
+-->
+<ul class="cart">
+    <!-- SO FAR item is just a String, name of the item -->
+    {{#each cartItems}}
+    <li class="menu-item">{{this}}</li>
+    {{/each}}
 </ul>
-<section>
-    <h2 id="order-status">{{ orderStatus }}</h2>
+
+<section class="order-form-container">
+    <h2 class="order-status">{{ orderStatus }}</h2>
     <!-- 
     send order data to handler, on server, 
     that deals with incoming customer orders
     -->
+    <!-- BEGINNING OF OVERHAUL -->
     {{#if processing}}
-    <form id="order-form" action="/cart" method="POST">
+    <form class="order-form" action="/cart" method="POST">
         <!-- special notes for order -->
         <label for="notes"></label>
         Notes:
@@ -43,4 +39,5 @@
         <input id="submit-order" type="submit" value="Submit Order">
     </form>
     {{/if}}
+    <!-- END OF OVERHAUL -->
 </section>

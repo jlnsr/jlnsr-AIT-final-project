@@ -2,36 +2,23 @@
 <html>
     <head>
         <meta charset="">
-        <link rel="stylesheet" href="/styles/styles.css">
+        <link rel="stylesheet" href="/styles/styles2.css"><!-- change back to styles.css -->
+        <script defer src="/scripts/dom2.js"></script><!-- change back to dom.js!! -->
     </head>
     <body>
-        <!-- BEGINNING OF: make this a template -->
-        <header>
-            <img alt="business-logo">
-            <h1>Resturant Name</h1>
-            <div id="membership-signup">
-                <img alt="member-logo">
-                <a href="">Become a Member</a>    
-            </div>
-            <div id="nav-loc">
-                {{#if atHome}}
-                    <!-- Number of items in shopping cart -->
-                    <span id="number">0</span>'
-                    <!-- go to cart from home-->
-                    <img alt="shopping-cart-logo">
-                    <a href="/cart">Shopping Cart</a>
-                {{else}}
-                    <img alt="home-logo">
-                    <a href="/home">Home</a>
-                {{/if}}
-            </div>
-            
+        <header class="header">
+            <!--<a class="link" href="/{{ otherPage }}">{{ otherPage }}</a>-->
+            <button class="link to-cart">{{ otherPage }}</button>
         </header>
-        <!-- END OF: make this a template -->
-        <main>
-            <!-- dynamic content -->
-            {{{ body }}}
+        <main class="main">
+            <!-- Dynamically set content of page: 
+                a. menu
+                b. cart
+            -->
+            {{{ body }}}  
         </main>
-        <script src="/dom/dom.js"></script>
+        <footer class="footer">
+            <p>Address of restaurant...</p>
+        </footer>
     </body>
 </html>
