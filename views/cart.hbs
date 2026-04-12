@@ -3,41 +3,53 @@ Template Variables:
 - cartItems
 - orderStatus
 -->
+<script defer src="/scripts/formDom.js"></script>
+
+<h1>You have {{numCartItems}} items in the cart</h1>
 <ul class="cart">
     <!-- SO FAR item is just a String, name of the item -->
     {{#each cartItems}}
-    <li class="menu-item">{{this}}</li>
+    <li class="cart-item">{{this}}</li>
     {{/each}}
 </ul>
+<p>Total: ${{ totalPrice }}</p>
 
 <section class="order-form-container">
-    <h2 class="order-status">{{ orderStatus }}</h2>
+    <h2>Complete you order</h2>
     <!-- 
     send order data to handler, on server, 
     that deals with incoming customer orders
     -->
     <!-- BEGINNING OF OVERHAUL -->
-    {{#if processing}}
-    <form class="order-form" action="/cart" method="POST">
+    <form class="order-form" action="/orderUpdates" method="POST">
         <!-- special notes for order -->
-        <label for="notes"></label>
-        Notes:
-        <input type="text" name="notes">
+        <label for="notes">Let us known anything else about how you want your order prepared</label>
+        <input class="form-input" type="text" name="notes" placeholder="Notes...">
+        
         <!-- method of payment -->
-        <label for="payBy"></label>
-        *Pay By:
-        <select name="paymentMethod">
+        <label for="payBy">*Pay By:</label>
+        <select class="form-input payment-method" name="paymentMethod">
             <option value="card">Card</option>
             <option value="paypal">PayPal</option>
         </select>
+
         <!-- payment credentials/details -->
-        <p class="warning hidden" id="payment-warning">Must submit payment details</p>
+        <p class="warning hidden">Must submit payment details</p>
         <label for="payment"></label>
-        *Enter payment details:
-        <input id="payment-details" type="number" name="payment">
+        <input class="form-input payment-details" 
+            type="number" name="payment" placeholder="*Enter payment details">
+        
+        <!-- name & contact -->
+        <p class="warning hidden">Must submit contact details for this order (name, email or phone)</p>
+        <label for="name"></label>
+        <input class="form-input contact-info" type="text" name="name" placeholder="*Name">
+        <label for="contact">*Enter contact information:</label>
+        <input class="form-input contact-info" type="text" name="contact" placeholder="Email or Phone Number">
+        <!-- hidden forms -->
+        <input class="form-input" type="hidden" 
+            name="totalPrice" value="{{ totalPrice }}">
+        <input class="form-input time-stamp" type="hidden" name="timeStamp">
         <!-- submission -->
         <input id="submit-order" type="submit" value="Submit Order">
     </form>
-    {{/if}}
-    <!-- END OF OVERHAUL -->
 </section>

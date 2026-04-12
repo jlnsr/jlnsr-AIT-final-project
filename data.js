@@ -1,7 +1,23 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 mongoose.connect(process.env.DSN).
   then(() => console.log('connected to database')).
   catch(err => console.log('database connection error: ' + err));
+
+// save all orders as...
+const OrderSchema = new mongoose.Schema({
+  name: {type: String},
+  contact: {type: String},
+  // array of all items in order (by name)  
+  items: {type: [String]},
+  itemCount: {type: Number},
+  // personalized specifications for customer order
+  notes: {type: String},
+  totalPrice: {type: Number},
+  //customer: {mongoose.Schema.Types.ObjectId, ref:'Customer'}
+}, { timestamps: true });
+// implicitly adds 'createdAt', 'updatedAt' fields
+const Order = mongoose.model('Order', OrderSchema)
+export default Order
 
 // DB details
 // Schema for restaurant items??
@@ -12,22 +28,6 @@ const CustomerSchema = mongoose.Schema({
   email: {type: String},
   // no password needed
   address: {type: String},
-});
-// customer makes order
-const OrderSchema = mongoose.Schema({
-  // array of all items in order
-  items: {type: [String]},
-  itemCount: {type: Number},
-  // personalized specifications for customer order
-  notes: {type: String},
-  // price prior to discounts (sum of items)
-  /*basePrice: {type: Number},
-  // percentage OR literal value?
-  discount: {type: Number},
-  // price after discounts, deals, fees, etc..*/
-  totalPrice: {type: Number},
-  //customer: {mongoose.Schema.Types.ObjdId, ref:'Customer'}
-  time: {type: Date}
 });
 
 // ADDITIONAL
@@ -44,14 +44,3 @@ const MemberSchema = mongoose.Schema({
   // etc.
 });
 const Member = mongoose.model('Member', MemberSchema);
-// restaurant for whom this app
-// hosts the online menu
-const BusinessSchema = mongoose.Schema({
-  // restaurant name that appears on menu
-  name: {type: String},
-  // logo: {type: String} // URL for img <--?
-  // for listing business location on
-  // interactive, online menus
-  address: {type: String},
-  //etc..
-});

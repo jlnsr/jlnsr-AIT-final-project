@@ -1,5 +1,5 @@
 import './config.js';
-import './data.js';
+import Order from './data.js';
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -17,40 +17,54 @@ const __dirname = path.dirname(__filename);
 // serve static files from 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-// body-parser middleware
-//app.use(express.urlencoded({ extended: true }));
+// body-parser middleware(s)
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
 
 // basic routes
-app.use('/menu', (req,res, next) => {
+/*app.use('/cart', (req,res, next) => {
   next();
-});
+});*/
 
 app.get('/menu', (req, res) => {
   res.render('menu', {otherPage: "cart"});
   // Working: YES
 });
 
-// BEGINNING OF OVERHAUL
-/*app.get('/cart', (req, res) => {
-  
-});*/
-
 let cartItems = [];//<-- for now
 app.post('/cart', (req, res) => {
-  //console.log(req.body, Array.isArray(req.body));
   cartItems = req.body;
   res.sendStatus(200);
-  // Working: 
+  // Working: YES
 });
 app.get('/cart', (req, res) => {
   res.render('cart', {
     cartItems,
+    "numCartItems": cartItems.length,
     "otherPage": "menu",
-    "orderStatus": "Complete your order"
+    "totalPrice": Number.parseFloat(cartItems.length * 5),//<-- for now
+  })
+  // WORKING: YES
+})
+// linked from form in cart.hbs, action
+app.post('/orderUpdates', async (req, res) => {
+  console.log(req.body, typeof(req.body))
+  // this data should be saved to db
+  const newOrder = new Order({
+    name: req.body.name,
+    contact: req.body.contact,
+    items: req.body.orderItems,
+    itemCount: req.body.orderItems.length,
+    notes: req.body.notes,
+    totalPrice: req.body.orderItems.length * 5,//<-- for now
+  })
+  await newOrder.save()
+  // show results of saved order
+  res.render('orderUpdates', {
+    "orderStatus": "Your order is on its way!",
+    "orderedItems": req.body.orderItems
   })
 })
-// END OF OVERHAUL
 
 // Start server
 app.listen(PORT, () => {
