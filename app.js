@@ -21,11 +21,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
 
-// basic routes
-/*app.use('/cart', (req,res, next) => {
-  next();
-});*/
-
 app.get('/menu', (req, res) => {
   res.render('menu', {otherPage: "cart"});
   // Working: YES
@@ -64,6 +59,13 @@ app.post('/orderUpdates', async (req, res) => {
     "orderStatus": "Your order is on its way!",
     "orderedItems": req.body.orderItems
   })
+})
+// TEST DB
+app.get('/orders', async (req, res) => {
+  const orders = await mongoose.Order.find()
+  for (const o of orders){
+    console.log(o.name, o.items, o.createdAt)
+  }
 })
 
 // Start server
