@@ -1,0 +1,13 @@
+<ul class="orders-log">
+{{#each orders}}
+<li>
+    {{ name }} ordered the following items;
+    <ol>
+        {{#each items}}
+        <li>{{ this }}</li>
+        {{/each}}
+    </ol>
+    at {{ createdAt }}
+</li>
+{{/each}}
+</ul>
