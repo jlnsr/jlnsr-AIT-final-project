@@ -42,8 +42,8 @@ dynamically populate the /cart page. The selected items are saved to an array, a
 
 URL(s) to github repository with commits that show progress on research
 --- 
-(TODO: add link to github url that shows line or lines of code that demonstrate continued progress on research topics)
+[Research](https://github.com/jlnsr/jlnsr-AIT-final-project/blob/main/views/menu.hbs#L15-L38)
 
 References 
 ---
-(TODO: if applicable, links to annotated lines of code in github repository that were based off of tutorials / articles / sample projects)
+[Citing a Manual](https://github.com/jlnsr/jlnsr-AIT-final-project/blob/main/public/scripts/menuDom.js#L49-L54)

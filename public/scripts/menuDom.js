@@ -48,6 +48,9 @@ function moveItemToCart(e) {
 }
 /*
 SOURCE: https://www.sitepoint.com/javascript-window-object/
+The code below manipulates the global window object to perform some AJAX actions.
+I found a helpful source that provides deep insights about the window object
+and its properties. The content therein helped me design this particular solution.
 */
 async function toCart(e){
     // GET /menu
