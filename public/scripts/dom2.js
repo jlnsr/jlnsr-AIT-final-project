@@ -47,26 +47,7 @@ function moveItemToCart(e) {
     }
 }
 /*
-GOAL: Collect the items selected in the /menu page and use them to
-dynamically populate the /cart page. The selected items are saved to an 
-array, and the objective is to send this array as payload to the /cart url.
-PROBLEM: How to send data as paylod with a request that is not made
-through a form.
-RESEARCH FINDING(S):
-• Anchor tags are only for navigation purposes, forcing the browser
-to make a GET request to the href specified. This request cannot be configured.
-• Use the Fetch api to configure a request to send specific data, via POST method. The server saves
-this data (on a per-session basis), and, when recieving a subsequent GET method to the same endpoint,
-sends the saved data to the template. In order to force the browser to navigate to a new page, we use
-window.location.href = '/new-endpoint'.
-"
 SOURCE: https://www.sitepoint.com/javascript-window-object/
-The window.location property is an object that contains information about the URL of the current page. 
-It contains a number of properties that provide information about different fragments of the URL.
-The href property returns the full URL as a string.
-This property is a read/write property, which means it can also be changed by assignment. 
-If this is done, the page will be reloaded using the new property.
-"
 */
 async function toCart(e){
     // GET /menu

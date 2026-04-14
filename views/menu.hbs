@@ -2,9 +2,9 @@
 <ul class="menu">
     <!-- 
     this 'ul' should be populated programtically
-    Pull all menu items from the DB and populate this 'ul' with them??
+    Pull all menu items from the DB and populate this 'ul' with them.
     -->
-    <!-- use React to generate dynamic list of items?? -->
+    <!-- use React to generate dynamic list of items -->
     <li class="menu-item">Item 1</li>
     <li class="menu-item">Item 2</li>
     <li class="menu-item">Item 3</li>
@@ -12,3 +12,27 @@
     <li class="menu-item">Item 5</li>
     <li class="menu-item">Item 6</li>
 </ul>
+<!--
+"1.  npm create vite@latest front-end
+In the project directory, scaffold the structure of a basic React starter project 
+- this will create the conventional directory structure, install any necessary dependencies, set up configuration files, 
+and include simple React app starter code that is immediately runnable.
+
+2.  npm create vite@latest front-end
+We call the React app front-end, since it will be used to generate the front-end of a web app 
+- this will create a front-end sub-directory where all React code will live."
+
+The above is quoted from: https://knowledge.kitchen/content/courses/agile-development-and-devops/notes/react-intro/
+
+Some React pseudo-code to generate a dynamically-populated collection of items for a menu.
+
+const menuItemLis = menuItems.map((item) => {
+    return (
+        <li class="menu-item">
+            <img class="item-image" src={item.img} alt={`image for ${item.name}`}>
+            <p class="item-description">item.description</p>
+            <span class="item-price">{`${item.price}`}
+        </li>
+    )
+})
+-->

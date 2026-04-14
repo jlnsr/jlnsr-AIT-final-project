@@ -15,6 +15,8 @@ Special Instructions for Form 1
 2. Click the "Go to cart" button (top-left)
 3. Fill out the form with all necessary information.
 4. Click "Submit". This will save your order to the database and load a new page the displays your order's status.
+5. To see your order in the actual database, go to:      
+(https://jlnsr-ait-final-project.onrender.com/orders)
 
 URL for form 2 (for current milestone)
 ---
