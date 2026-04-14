@@ -62,10 +62,11 @@ app.post('/orderUpdates', async (req, res) => {
 })
 // TEST DB
 app.get('/orders', async (req, res) => {
-  const orders = await mongoose.Order.find()
+  const orders = await Order.find({})
   for (const o of orders){
     console.log(o.name, o.items, o.createdAt)
   }
+  res.render('ordersLog', {orders})
 })
 
 // Start server
