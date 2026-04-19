@@ -16,8 +16,11 @@ const linkToCart = document.querySelector(".to-cart")
 linkToCart.addEventListener("click", toCart)
 
 // DYNAMIC list of selected menu items
-const cartItems = [];
+let cartItems = [];
 let numCartItems = 0;
+if(document.cookie){
+    getCartItems()    
+}
 
 // STATIC list of menu items
 const allMenuItems = document.getElementsByClassName("menu-item")
@@ -74,4 +77,21 @@ async function toCart(e){
 // Helpers (*should be moved to separate file: helpers.js)
 function remove(arr, ele){
     arr.splice(arr.indexOf(ele),1)
+}
+
+function getCartItems(){
+    const raw = document.cookie.split('=')[1];
+    console.log(raw);
+    // cookies are sent to browser as encoded?
+    // NOT as plain-text?
+    const cleaned = decodeURIComponent(raw).replace(/^j:/,'');
+    const prevCartItems = JSON.parse(cleaned)
+    console.log(prevCartItems)
+    for(const item of prevCartItems){
+        const num = item.split(' ')[1]
+        console.log(`.item${num}`)
+        cartItems = prevCartItems;
+        document.querySelector(`.item${num}`).classList.add("menu-item-clicked")
+    }
+    // error
 }

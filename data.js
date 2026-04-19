@@ -3,7 +3,6 @@ mongoose.connect(process.env.DSN).
   then(() => console.log('connected to database')).
   catch(err => console.log('database connection error: ' + err));
 
-// save all orders as...
 const OrderSchema = new mongoose.Schema({
   name: {type: String},
   contact: {type: String},
@@ -19,28 +18,44 @@ const OrderSchema = new mongoose.Schema({
 const Order = mongoose.model('Order', OrderSchema)
 export default Order
 
-// DB details
-// Schema for restaurant items??
-// customers = ANYONE who orders from this restaurant
-const CustomerSchema = mongoose.Schema({
-  firstName: {type: String},
-  lastName: {type: String},
-  email: {type: String},
-  // no password needed
-  address: {type: String},
-});
+const MenuItemSchema = new mongoose.Schema({
+  name: {type:String},
+  image: {type: url},
+  description: {type: String},
+  price: {type: Number},
+  discount: {type: Number}
+})
+const MenuItem = mongoose.model('MenuItem', OrderSchema)
 
-// ADDITIONAL
-// schema for members
-// members derive from customers??
-// members = loyal customers who sign
-// up for a special membership with a restaurant
-const MemberSchema = mongoose.Schema({
-  // derive data from 'Customer' document
-  customer: {type: mongoose.Schema.Types.ObjectId, ref:'Customer'},
-  // APPEND NEW fields (specific to Member)
-  password: {type: String},
-  //favorites: {type: [String]}
-  // etc.
-});
-const Member = mongoose.model('Member', MemberSchema);
+class MenuItemElement {
+  constructor(parent, details){
+    this.container = document.createElement('div');
+    container.classList.add(`menu-item ${details.name}`)
+
+    this.name = document.createElement('h2')
+    name.textContent = details.name
+    
+    this.img = document.createElement('img')
+    img.src = details.image
+    
+    this.descr = document.createElement('p')
+    parent.textContent = details.description
+
+    this.price = document.createElement('span')
+    price.textContent = `$${details.price}`
+
+    [name, img, descr, price].forEach(e => container.appendChild(e))
+    parent.appendChild(container)
+  }
+  remove(){
+    // remove
+    this.container.remove()
+  }
+}
+class CartItem{
+  constructor(name, price, discount){
+    this.name = name
+    this.price = price
+    this.discount = discount
+  }
+}

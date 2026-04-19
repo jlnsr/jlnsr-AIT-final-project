@@ -18,8 +18,12 @@
     "test": "jasmine"
   },
   "dependencies": {
+    "better-sqlite3": "^12.9.0",
+    "better-sqlite3-session-store": "^0.1.0",
+    "cookie-parser": "^1.4.7",
     "dotenv": "^17.4.0",
     "express": "^5.2.1",
+    "express-session": "^1.19.0",
     "hbs": "^4.2.1",
     "jasmine": "^6.1.0",
     "mongoose": "^9.4.1"

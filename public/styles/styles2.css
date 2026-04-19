@@ -17,7 +17,7 @@
     font-size: large; text-align: center;
     background-color: whitesmoke;
 }
-.menu-item:hover{
+.menu-item:hover, .cart-item:hover{
     background-color: lightskyblue;
     border-bottom: 2px solid;
 }
