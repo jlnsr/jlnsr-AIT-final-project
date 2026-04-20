@@ -3,6 +3,7 @@ mongoose.connect(process.env.DSN).
   then(() => console.log('connected to database')).
   catch(err => console.log('database connection error: ' + err));
 
+// 2 x SCHEMAS
 const OrderSchema = new mongoose.Schema({
   name: {type: String},
   contact: {type: String},
@@ -20,13 +21,14 @@ export default Order
 
 const MenuItemSchema = new mongoose.Schema({
   name: {type:String},
-  image: {type: url},
+  image: {type: String},
   description: {type: String},
   price: {type: Number},
   discount: {type: Number}
 })
 const MenuItem = mongoose.model('MenuItem', OrderSchema)
 
+/*
 class MenuItemElement {
   constructor(parent, details){
     this.container = document.createElement('div');
@@ -51,11 +53,4 @@ class MenuItemElement {
     // remove
     this.container.remove()
   }
-}
-class CartItem{
-  constructor(name, price, discount){
-    this.name = name
-    this.price = price
-    this.discount = discount
-  }
-}
+}*/

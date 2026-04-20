@@ -1,4 +1,13 @@
+import * as help from './helpers.js'
 // referenes to ORDER page
+const [cart, paymentDetails, orderForm, paymentMethod] = [
+    [".cart"], [".payment-details"],
+    [".order-form", ["submit", handleOrder]], 
+    [".payment-method", ["onchange", changePaymentMethod]]
+].map(args => help.getDom("querySelector", ...args))
+// HOF 3
+
+/*
 const cart = document.querySelector(".cart")
 const orderForm = document.querySelector('.order-form');
 orderForm.addEventListener("submit", handleOrder)
@@ -6,6 +15,7 @@ orderForm.addEventListener("submit", handleOrder)
 const paymentMethod = document.querySelector(".payment-method")
 paymentMethod.addEventListener("onchange", changePaymentMethod)
 const paymentDetails = document.querySelector(".payment-details")
+*/
 const [name, contact] = document.querySelectorAll(".contact-info")
 const [missingPayment, missingContact] = document.querySelectorAll(".warning")
 

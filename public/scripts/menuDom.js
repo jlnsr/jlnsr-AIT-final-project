@@ -9,11 +9,14 @@ pubic
     |_ dom.js* <--HERE
 */
 
+import * as help from './helpers.js'
+
 console.log("From public/scripts/menuDom.js")
 
 // button to request /cart
-const linkToCart = document.querySelector(".to-cart")
-linkToCart.addEventListener("click", toCart)
+const linkToCart = help.getDom("querySelector", ".to-cart", ["click", toCart])
+/*const linkToCart = document.querySelector(".to-cart")
+linkToCart.addEventListener("click", toCart)*/
 
 // DYNAMIC list of selected menu items
 let cartItems = [];
@@ -23,21 +26,25 @@ if(document.cookie){
 }
 
 // STATIC list of menu items
-const allMenuItems = document.getElementsByClassName("menu-item")
+const allMenuItems = help.getDom("querySelectorAll", ".menu-item", ["click", moveItemToCart])
+/*document.getElementsByClassName("menu-item")
 for (const item of allMenuItems){
     item.addEventListener("click", moveItemToCart)
-}
+}*/
 
 // Event Handlers
 function moveItemToCart(e) {
     // interactivity
     e.target.classList.toggle("menu-item-clicked")
+    console.log(
+        (e.target.classList.contains("menu-item-clicked") 
+        ? "Adding" : "Removing") + ` ${e.target.textContent}`)
 
     const itemName = e.target.textContent; //<-- for now
     
     if (cartItems.includes(itemName)){
         // data keeping
-        remove(cartItems, itemName); numCartItems -= 1;
+        help.remove(cartItems, itemName); numCartItems -= 1;
         // logging
         console.log(`Removed ${itemName} from cart, you now have:\n${
             cartItems}`)
@@ -72,11 +79,6 @@ async function toCart(e){
         window.location.href='/cart'    
     }
     
-}
-
-// Helpers (*should be moved to separate file: helpers.js)
-function remove(arr, ele){
-    arr.splice(arr.indexOf(ele),1)
 }
 
 function getCartItems(){
