@@ -1,7 +1,8 @@
 import './config.js';
-import Order from './data.js';
+import {Order, Employee} from './data.js';
 import express from 'express';
 import path from 'path';
+import bcrypt from 'bcryptjs'
 /* 
 Parses req.headers.cookie (string of key-val pairs).
 Attaches a new property, 'cookies', on req object.
@@ -130,7 +131,7 @@ app.post('/orderUpdates', async (req, res) => {
   })
 })
 // TEST DB (*requires AUTHENTICATION)
-app.get('/orders', async (req, res) => {
+app.get('/ordersLog', async (req, res) => {
   const orders = await Order.find({})
   for (const o of orders){
     console.log(o.name, o.items, o.createdAt)
@@ -138,9 +139,22 @@ app.get('/orders', async (req, res) => {
   res.render('ordersLog', {orders})
 })
 
-app.get('/staffAuth.hbs', (req, res) => {
-  const [fName, lName, employeeId, pwrd] = req.body
+app.get('/staffAuth', (req, res) => {
+  console.log("authFailed type:", typeof false, false)
+  res.render('staffAuth', {
+    'otherPage':'menu', 
+  })
+})
+app.post('/staffAuth', async (req, res) => {
+  return res.render('staffAuth', {"authFailed":true})
+  
+  const {firstName, lastName, employeeId, passwordPlain} = req.body
   // check database
+  const employee = await Employee.findOne({firstName,lastName, employeeId})
+  if (!employee || !bcrypt.compareSync(passwordPlain, employee.password)){
+    return res.render('staffAuth', {"authFailed":true})
+  }
+  return res.redirect('/ordersLog')
 })
 
 // Start server

@@ -1,4 +1,6 @@
-import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs'
+import mongoose from 'mongoose'
+
 mongoose.connect(process.env.DSN).
   then(() => console.log('connected to database')).
   catch(err => console.log('database connection error: ' + err));
@@ -40,15 +42,18 @@ const Employee = mongoose.model('Employee', EmployeeSchema)
 //export default MenuItem
 
 // DUMMY EMPLOYEE FOR TESTING PURPOSES
+const salt = bcrypt.genSaltSync(10)
+const hash = bcrypt.hashSync("abc123", salt)
 const foo = new Employee({
-  firstName: "foo",
-  lastName: "bar",
-  employeeId: "abc123",
-  password: "abc123",
-  salt: "salt"
+  "firstName": "foo",
+  "lastName": "bar",
+  "employeeId": "abc123",
+  //password: "abc123",
+  salt,
+  "password": hash
 })
 await foo.save()
 
-export default {
+export {
   Order,MenuItem,Employee
 }

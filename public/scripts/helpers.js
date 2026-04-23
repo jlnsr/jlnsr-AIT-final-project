@@ -52,7 +52,10 @@ export function getDom(finder, identifier, eventListener = []){
 }
 
 export function remove(arr, ele){
-    arr.splice(arr.indexOf(ele),1)
+  if(isEmpty(arr)){
+    return
+  }
+  arr.splice(arr.indexOf(ele),1)
 }
 
 export function isEmpty(obj){
