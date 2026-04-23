@@ -17,7 +17,7 @@ const OrderSchema = new mongoose.Schema({
 }, { timestamps: true });
 // implicitly adds 'createdAt', 'updatedAt' fields
 const Order = mongoose.model('Order', OrderSchema)
-export default Order
+//export default Order
 
 const MenuItemSchema = new mongoose.Schema({
   name: {type:String},
@@ -27,7 +27,7 @@ const MenuItemSchema = new mongoose.Schema({
   discount: {type: Number}
 })
 const MenuItem = mongoose.model('MenuItem', OrderSchema)
-export default MenuItem
+//export default MenuItem
 
 const EmployeeSchema = new mongoose.Schema({
   firstName: {type:String},
@@ -37,7 +37,7 @@ const EmployeeSchema = new mongoose.Schema({
   salt: {type:String}
 })
 const Employee = mongoose.model('Employee', EmployeeSchema)
-export default MenuItem
+//export default MenuItem
 
 // DUMMY EMPLOYEE FOR TESTING PURPOSES
 const foo = new Employee({
@@ -48,3 +48,7 @@ const foo = new Employee({
   salt: "salt"
 })
 await foo.save()
+
+export default {
+  Order,MenuItem,Employee
+}
