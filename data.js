@@ -42,7 +42,7 @@ const Employee = mongoose.model('Employee', EmployeeSchema)
 //export default MenuItem
 
 // DUMMY EMPLOYEE FOR TESTING PURPOSES
-const salt = bcrypt.genSaltSync(10)
+/*const salt = bcrypt.genSaltSync(10)
 const hash = bcrypt.hashSync("abc123", salt)
 const foo = new Employee({
   "firstName": "foo",
@@ -52,7 +52,7 @@ const foo = new Employee({
   salt,
   "password": hash
 })
-await foo.save()
+await foo.save()*/
 
 export {
   Order,MenuItem,Employee
