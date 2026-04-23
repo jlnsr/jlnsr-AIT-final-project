@@ -5,6 +5,10 @@
 .cart {
     border-bottom: none;
 }
+.empty {
+    height: 50px;
+    background-color: lightgrey;
+}
 .menu {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

@@ -11,11 +11,13 @@ export function createElement(tagName, parent, options = {}, eventListener = [])
   const e = document.createElement(tagName);
   // give element optional attributes
   if(!isEmpty(options)){
-    ["classList", "textContent", "src", "alt"].forEach((attr) => {
+    Object.entries(options).
+    forEach(([prop,val]) => e[prop] = val)
+    /*["classList", "textContent", "src", "alt"].forEach((attr) => {
       if(Object.hasOwn(options, attr)){
         e[attr] = options[attr]
       }
-    })
+    })*/
   }
   // attach event listener to element
   if(!isEmpty(eventListener)){

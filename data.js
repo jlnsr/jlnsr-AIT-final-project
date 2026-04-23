@@ -3,7 +3,7 @@ mongoose.connect(process.env.DSN).
   then(() => console.log('connected to database')).
   catch(err => console.log('database connection error: ' + err));
 
-// 2 x SCHEMAS
+// 3 x SCHEMAS
 const OrderSchema = new mongoose.Schema({
   name: {type: String},
   contact: {type: String},
@@ -27,30 +27,24 @@ const MenuItemSchema = new mongoose.Schema({
   discount: {type: Number}
 })
 const MenuItem = mongoose.model('MenuItem', OrderSchema)
+export default MenuItem
 
-/*
-class MenuItemElement {
-  constructor(parent, details){
-    this.container = document.createElement('div');
-    container.classList.add(`menu-item ${details.name}`)
+const EmployeeSchema = new mongoose.Schema({
+  firstName: {type:String},
+  lastName: {type:String},
+  employeeId: {type:String},
+  password: {type:String},
+  salt: {type:String}
+})
+const Employee = mongoose.model('Employee', EmployeeSchema)
+export default MenuItem
 
-    this.name = document.createElement('h2')
-    name.textContent = details.name
-    
-    this.img = document.createElement('img')
-    img.src = details.image
-    
-    this.descr = document.createElement('p')
-    parent.textContent = details.description
-
-    this.price = document.createElement('span')
-    price.textContent = `$${details.price}`
-
-    [name, img, descr, price].forEach(e => container.appendChild(e))
-    parent.appendChild(container)
-  }
-  remove(){
-    // remove
-    this.container.remove()
-  }
-}*/
+// DUMMY EMPLOYEE FOR TESTING PURPOSES
+const foo = new Employee({
+  firstName: "foo",
+  lastName: "bar",
+  employeeId: "abc123",
+  password: "abc123",
+  salt: "salt"
+})
+await foo.save()

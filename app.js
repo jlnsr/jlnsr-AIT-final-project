@@ -138,6 +138,11 @@ app.get('/orders', async (req, res) => {
   res.render('ordersLog', {orders})
 })
 
+app.get('/staffAuth.hbs', (req, res) => {
+  const [fName, lName, employeeId, pwrd] = req.body
+  // check database
+})
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

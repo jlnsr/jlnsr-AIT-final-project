@@ -17,11 +17,11 @@ Template Variables:
 
 <section class="order-form-container">
     <h2>Complete you order</h2>
+    <p class="warning hidden empty-cart">You have no items in the cart</p>
     <!-- 
     send order data to handler, on server, 
     that deals with incoming customer orders
     -->
-    <!-- BEGINNING OF OVERHAUL -->
     <form class="order-form" action="/orderUpdates" method="POST">
         <!-- special notes for order -->
         <label for="notes">Let us known anything else about how you want your order prepared</label>
@@ -35,13 +35,13 @@ Template Variables:
         </select>
 
         <!-- payment credentials/details -->
-        <p class="warning hidden">Must submit payment details</p>
+        <p class="warning hidden invalid-payment">Must submit payment details</p>
         <label for="payment"></label>
         <input class="form-input payment-details" 
             type="number" name="payment" placeholder="*Enter payment details">
         
         <!-- name & contact -->
-        <p class="warning hidden">Must submit contact details for this order (name, email or phone)</p>
+        <p class="warning hidden invalid-contact">Must submit contact details for this order (name, email or phone)</p>
         <label for="name"></label>
         <input class="form-input contact-info" type="text" name="name" placeholder="*Name">
         <label for="contact">*Enter contact information:</label>

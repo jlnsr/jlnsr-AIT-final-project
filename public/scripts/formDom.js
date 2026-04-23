@@ -1,11 +1,18 @@
 import * as help from './helpers.js'
 // referenes to ORDER page
-const [cart, paymentDetails, orderForm, paymentMethod] = [
+const [cart, paymentDetails, emptyCart, missingPayment, missingContact, orderForm, paymentMethod] = [
     [".cart"], [".payment-details"],
+    [".empty-cart"], [".invalid-payment"], [".invalid-contact"], // warnings
     [".order-form", ["submit", handleOrder]], 
     [".payment-method", ["onchange", changePaymentMethod]]
 ].map(args => help.getDom("querySelector", ...args))
-// HOF 3
+// HOF 3 (map)
+// read DOM values
+let cartItems = cart.children
+let noCartItems = help.isEmpty(cartItems)
+cart.classList[
+    noCartItems ? 'add' : 'remove']('hidden')
+let paymentNumber = paymentDetails.value
 
 /*
 const cart = document.querySelector(".cart")
@@ -17,10 +24,22 @@ paymentMethod.addEventListener("onchange", changePaymentMethod)
 const paymentDetails = document.querySelector(".payment-details")
 */
 const [name, contact] = document.querySelectorAll(".contact-info")
-const [missingPayment, missingContact] = document.querySelectorAll(".warning")
+/*const [missingPayment, missingContact] = [
+    [".missing-payment", ".missing-contact"]].map(args => help.getDom("querySelector"))
+document.querySelectorAll(".missing-payment")*/
 
 // event listener on form itself
 function handleOrder(e) {
+    //Stability: simple validation on user input to prevent application from crashing
+    //30:--
+    // 1. No Cart Items
+    if(noCartItems){
+        emptyCart.classList.remove('hidden')
+        e.preventDefault()
+        return
+    }
+    emptyCart.classList.add('hidden')
+    // 2. Missing Fields
     let complete = true;
     if (paymentDetails.value === ''){
         missingPayment.classList.remove('hidden');
@@ -36,18 +55,30 @@ function handleOrder(e) {
         e.preventDefault()
         return  
     }
+    // 3. Invalid input
+    if(paymentNumber.search(/\D/g)){
+        missingPayment.classList.remove('hidden')
+        missingPayment.textContent = "Invalid payment number (all digits, no spaces or other characters)"
+    }else {
+        missingPayment.classList.add('hidden')
+        missingPayment.textContent = "Must submit payment details"
+    }
 
-    /* 
-    prevent the browsesr from refreshing the page
-    when form submitted (and resettings state)
-    */
     // send array as payload
-    for (const item of cart.children){
-        const itemInput = document.createElement('input')
+    for (const item of cartItems){
+        help.createElement(
+            'input', orderForm,
+            {
+                "type":"hidden",
+                "name":"orderItems[]",
+                "value":item.textContent
+            }
+        )
+        /*const itemInput = document.createElement('input')
         itemInput.type="hidden"
         itemInput.name="orderItems[]"
         itemInput.value=item.textContent
-        orderForm.appendChild(itemInput);
+        orderForm.appendChild(itemInput);*/
     }    
     orderForm.submit();
     // to prevent re-submission of payment credentials
