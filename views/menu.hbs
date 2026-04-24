@@ -25,15 +25,37 @@ We call the React app front-end, since it will be used to generate the front-end
 
 The above is quoted from: https://knowledge.kitchen/content/courses/agile-development-and-devops/notes/react-intro/
 
-Some React pseudo-code to generate a dynamically-populated collection of items for a menu.
+Some React pseudo-code to generate a dynamically-populated collection of MenuItem compoments for a menu.
 
-const menuItemLis = menuItems.map((item) => {
+const MenuItem = (props) => {
     return (
-        <li class="menu-item">
-            <img class="item-image" src={item.img} alt={`image for ${item.name}`}>
-            <p class="item-description">item.description</p>
-            <span class="item-price">{`${item.price}`}
+        <li 
+            class="menu-item"
+        >
+            <img class="item-image" src={props.img} alt={`image for ${props.name}`}>
+            <p class="item-description">props.description</p>
+            <span class="item-price">{`${props.price}`}
         </li>
     )
+}
+const menuItemLis = menuItems.map((item) => {
+    return (
+        <MenuItem 
+            name={item.name}
+            image={item.image}
+            description={item.description}
+            price={item.price}
+            onClick={ (count, setCount) => {setCount(count + 1)} }
+        >
+    )
 })
+
+In order to keep track of how many items have been selected, we must define such state at the parent level.
+
+const menu = () => {
+    const [clickedItems, setClickedItems] = useState(0)
+    return (
+        <ul>menuItemLis</ul>
+    )
+}
 -->

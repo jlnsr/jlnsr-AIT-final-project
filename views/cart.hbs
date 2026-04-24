@@ -42,10 +42,10 @@ Template Variables:
         
         <!-- name & contact -->
         <p class="warning hidden invalid-contact">Must submit contact details for this order (name, email or phone)</p>
-        <label for="name"></label>
-        <input class="form-input contact-info" type="text" name="name" placeholder="*Name">
         <label for="contact">*Enter contact information:</label>
+        <input class="form-input contact-info" type="text" name="name" placeholder="*Name">
         <input class="form-input contact-info" type="text" name="contact" placeholder="Email or Phone Number">
+        
         <!-- hidden forms -->
         <input class="form-input" type="hidden" 
             name="totalPrice" value="{{ totalPrice }}">

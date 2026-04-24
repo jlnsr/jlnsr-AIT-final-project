@@ -14,24 +14,11 @@ cart.classList[
     noCartItems ? 'add' : 'remove']('hidden')
 let paymentNumber = paymentDetails.value
 
-/*
-const cart = document.querySelector(".cart")
-const orderForm = document.querySelector('.order-form');
-orderForm.addEventListener("submit", handleOrder)
-
-const paymentMethod = document.querySelector(".payment-method")
-paymentMethod.addEventListener("onchange", changePaymentMethod)
-const paymentDetails = document.querySelector(".payment-details")
-*/
 const [name, contact] = document.querySelectorAll(".contact-info")
-/*const [missingPayment, missingContact] = [
-    [".missing-payment", ".missing-contact"]].map(args => help.getDom("querySelector"))
-document.querySelectorAll(".missing-payment")*/
 
 // event listener on form itself
 function handleOrder(e) {
     //Stability: simple validation on user input to prevent application from crashing
-    //30:--
     // 1. No Cart Items
     if(noCartItems){
         emptyCart.classList.remove('hidden')
@@ -56,7 +43,7 @@ function handleOrder(e) {
         return  
     }
     // 3. Invalid input
-    if(paymentNumber.search(/\D/g)){
+    if(/\D/.test(paymentNumber)){
         missingPayment.classList.remove('hidden')
         missingPayment.textContent = "Invalid payment number (all digits, no spaces or other characters)"
     }else {
