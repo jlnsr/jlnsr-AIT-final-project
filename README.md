@@ -9,45 +9,30 @@ A full, comprehensive, and interactive overview of the restaurant's menu, as wel
 Recieves form data, parses it into a human-readable string of text, relaying the specifics of the requested order to the culinary staff. Another UI designed to streamline operations in the kitchen, such as optimizing the order in which orders are handled.
 ### 3. Analytics
 For the business; keeps track of all orders and classifies them by popularity, informing the business about how to optimize the inventory based on customer trends.
-### 4. Membership
+### 4. Membership (yet to be implemented)
 A feature intended for loyal customers who regularly order from the restaurant. The business offers exclusive deals to members, such as coupons, happy hours, free complementary meals/add-ons, birthday specials, etc. It is even personalized so that it can offer deals specific to the member's order history. This feature will improve customer outreach by incentivizing members to spread awarness of the restaurant's excellent offerings.
 
 # Data Model
 - ### Customer Orders
 When a customer places an order, they fill out forms on the front-end, and the following snippet of a POST request is an example of what gets sent to the backend.
 ```
-POST /order-portal HTTP/1.1
+POST /orders HTTP/1.1
 Content-Type: JSON
 ...
 Body:
-shopping-cart={
-    "jerk-chicken": {
-        "spicy": "very",
-        "charred": False,
-        "toppings": ["peppers", "onions"]
-    },
-    "chicken-shawarma": {
-        "spicy": "medium",
-        "charred": True,
-        "toppings": ["green sauce", "hot sauce"]
-    },
-    "pomegranite-juice": {
-        "sugar": 40,
-        "size": small
-    },
-}
+items=["Item 1, "Item 3", "Item 6"]
 ```
-- ### Membership
+- ### Membership (to be implemented)
 Customers desiring membership fill out a simple form that gets sent to the back-end and added to a database. Members can then log-in to their accounts and access exclusive deals. An example member schema:
 ```
 {
     firstName: "Mandela",
     lastName: "Elmazi",
-    email: mandi_nishtulla@muzik.world
+    email: mandi_nishtulla@muzik
     password: 123abc,
     top3Picks: [
-        "Kanji", "Xiaolongbao", 
-        "Plješkavica with Rakija"
+        "kare kare", "biryani", 
+        "plješkavica"
     ]
 }
 ```
@@ -71,10 +56,15 @@ The schema contains basic authentication data, as well as more personal data to 
 10. As a user, I would like to create a membership account so I can be offered exclusive deals.
 
 # Research Topics 
-- (3 points) Interface Design and Front-end functionality. 
-    - [An Example: Oh My Gyro online order portal](https://omgyrohalal.square.site/#AKZAN5IFVRTATHK77V7IISV5) 
-- (4 points) React.js
-    - use React.js as the frontend framework; I have some experience with react so the overall interface shouldn't be that difficult to implement.
+- (0 points) Interface Design and Front-end functionality. 
+    - [An Example: Oh My Gyro online order portal](https://omgyrohalal.square.site/#AKZAN5IFVRTATHK77V7IISV5)
+- (1 point) better-sqlite3
+- (3 points) express-session-better-sqlite3
+- (1 point) Chart.js 
+- (3 points) Jasmine unit testing
+- (2 points) React.js
+    - use React.js as the frontend framework; Some react component prototypes were drafted; however, none of the UI was implemented with React due to time and feasibility constraints.
+- (1 point) window object
 # App Workload
 |Step|Customer|Server |Staff|
 |--|--|--|--|
@@ -89,7 +79,4 @@ The schema contains basic authentication data, as well as more personal data to 
 |9.|customer recieves "Order Ready" notification| | |
 
 # Testing Framework
-Mocha
-
-# Route Testing
-Selenium
+Jasmine
