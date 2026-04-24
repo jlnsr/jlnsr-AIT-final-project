@@ -1,13 +1,20 @@
-<ul class="orders-log">
-{{#each orders}}
-<li>
-    {{ name }} ordered the following items;
-    <ol>
-        {{#each items}}
-        <li>{{ this }}</li>
-        {{/each}}
-    </ol>
-    at {{ createdAt }}
-</li>
-{{/each}}
-</ul>
+<script defer type="module" src="/scripts/ordersLog.js"></script>
+<table class="order-log-table">
+    <tr>
+        <th>Name</th>
+        <th>Items</th>
+        <th>Timestamp</th>
+    </tr>
+    {{#each orders}}
+    <tr>
+        <td>{{name}}</td>
+        <td><ol>
+            {{#each items}}
+            <li class="list-item">{{ this }}</li>
+            {{/each}}
+        </ol></td>
+        <td>{{createdAt}}</td>
+    </tr>
+    {{/each}}
+</table>
+<form class="analytics-form" action="/analytics" method="POST"></form>

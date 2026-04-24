@@ -130,31 +130,34 @@ app.post('/orderUpdates', async (req, res) => {
     "orderedItems": orderItems
   })
 })
-// TEST DB (*requires AUTHENTICATION)
-app.get('/ordersLog', async (req, res) => {
-  const orders = await Order.find({})
-  for (const o of orders){
-    console.log(o.name, o.items, o.createdAt)
-  }
-  res.render('ordersLog', {orders})
-})
 
+// AUTHENTICATION BARRIER to data logs and analytics
 app.get('/staffAuth', (req, res) => {
-  console.log("authFailed type:", typeof false, false)
   res.render('staffAuth', {
-    'otherPage':'menu', 
+    'otherPage':'menu' 
   })
 })
 app.post('/staffAuth', async (req, res) => {
-  return res.render('staffAuth', {"authFailed":true})
-  
-  const {firstName, lastName, employeeId, passwordPlain} = req.body
+  const {firstName, lastName, employeeId, password} = req.body
   // check database
   const employee = await Employee.findOne({firstName,lastName, employeeId})
-  if (!employee || !bcrypt.compareSync(passwordPlain, employee.password)){
+  if (!employee || !bcrypt.compareSync(password, employee.password)){
     return res.render('staffAuth', {"authFailed":true})
   }
   return res.redirect('/ordersLog')
+})
+
+app.get('/ordersLog', async (req, res) => {
+  const orders = await Order.find({})
+  res.render('ordersLog', { orders,'otherPage':'analytics'})
+})
+
+app.post('/analytics', (req, res) => {
+  const data = req.body
+  res.render('analytics', {
+    data,
+    'otherPage':'ordersLog'
+  })
 })
 
 // Start server
