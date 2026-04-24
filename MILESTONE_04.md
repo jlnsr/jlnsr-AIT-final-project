@@ -26,7 +26,7 @@ Special Instructions for Form 1
 1. Select items from the menu
 2. Click the "Go to cart" button (top-left)
 3. Fill out the form with all necessary information.
-4. Click "Submit". This will save your order to the database and load a new page the displays your order's status.
+4. Click "Submit". This will save your order to the database and load a new page that displays your order's status.
 5. To see your order in the actual database, please proceed to the next step below. 
 
 URL for form 2 (for current milestone)
@@ -75,25 +75,34 @@ Link to github line number(s) for schemas (db.js or models folder)
 ---
 (https://github.com/jlnsr/jlnsr-AIT-final-project/blob/main/data.js#L8-L41) 
 
+Link to Unit Test Results
+---
+(https://github.com/jlnsr/jlnsr-AIT-final-project/blob/main/documentation/unit_tests.png)
+
 Description of research topics above with points
 ---
-|Topic|Points|
-|-|-|
-|better-sqlite3|1 points|
-|better-sqlite3-session-store|3 points|
-|Chart.js|1 points|
-|Jasmine (unit tests)|3 points|
-|React|2 points|
-|window object|1 points|
+|Topic|Points|Link|
+|-|-|-|
+|better-sqlite3|1 points|https://github.com/jlnsr/jlnsr-AIT-final-project/blob/main/app.js#L32-L58|
+|better-sqlite3-session-store|3 points|https://github.com/jlnsr/jlnsr-AIT-final-project/blob/main/app.js#L32-L58|
+|Chart.js|1 points|https://github.com/jlnsr/jlnsr-AIT-final-project/blob/main/views/analytics.hbs|
+|Jasmine (unit tests)|3 points|(https://github.com/jlnsr/jlnsr-AIT-final-project/blob/main/spec/support/tests.mjs)|
+|React|2 points|(https://github.com/jlnsr/jlnsr-AIT-final-project/blob/main/views/menu.hbs#L16-L61)|
+|window object|1 points|(https://github.com/jlnsr/jlnsr-AIT-final-project/blob/main/public/scripts/menuDom.js#L67-L80)|
 
 Links to github line number(s) for research topics described above (one link per line)
 ---
-(TODO: add link to github line number(s), one per line for research topics ... for example, if using auth/passport, link to auth.js or where bulk of auth code is)
+See the table above.
 
 Optional project notes 
 --- 
-(TODO: optionally add add any other information required for using/testing the final project)
+I had originally planned to use React for most of the front-end; however, I chose to begin prototyping with vanilla Javascript to quickly develop a MVP for Milestone(s) 1 and 2. To meet the deadline for Milestone 3, I continued development with vanilla Javascript. By Milestone 4, it was virtually infeasible to overhaul the entire UI with React components. However, the research is still useful for future plans with this project, that will help simplify the code and reduce architectural complexity. 
 
 Attributions
 ---
-(TODO:  list sources that you have based your code off of, 1 per line, with file name, a very short description, and an accompanying url... for example: routes/index.js - Authentication code based off of http://foo.bar/baz ... alternatively, if you have already placed annotations in your project, answer "See source code comments")
+[better sqlite3](https://dev.to/lovestaco/understanding-better-sqlite3-the-fastest-sqlite-library-for-nodejs-4n8) - An introduction to interfacing with sqlite databases with JavaScript.  
+[express-session-better-sqlite3](https://github.com/theogravity/express-session-sqlite/blob/master/README.md) - Using sqlite as a session store, rather than express-session's default in-memory store.  
+[Chart.js](https://www.chartjs.org/docs/latest/getting-started/usage.html) - A guide on the different types of charts available with this library.  
+[Jasmine](https://jasmine.github.io/tutorials/custom_matchers) - Documentation for Jasmine.  
+[React](https://knowledge.kitchen/content/courses/agile-development-and-devops/notes/react-intro/) - Professor Amos Bloomberg's lesson on React (from his Agile Software Development & DevOps course I took last semester).  
+[Document window object](https://www.sitepoint.com/javascript-window-object/) - Everything to know about interactivity achieved through manipulating the window object.
